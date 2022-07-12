@@ -16,6 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class LoginStepDef {
 
     LoginPage loginPage = new LoginPage();
+    WebDriverWait wait = new WebDriverWait(Driver.getDriver(),10);
 
     @Given("I am on the login page")
     public void i_am_on_the_login_page() {
@@ -31,11 +32,26 @@ public class LoginStepDef {
     public void dashboard_should_be_displayed() {
         String expectedURL ="dashboard";
 
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),10);
         wait.until(ExpectedConditions.urlContains(expectedURL));
 
         String actualURL = Driver.getDriver().getCurrentUrl();
         Assert.assertTrue("dashboard is not appear on URL",actualURL.contains(expectedURL));
+
+    }
+
+    @When("I login as a student")
+    public void i_login_as_a_student() {
+       loginPage.emailInput.sendKeys(ConfigurationReader.getProperty("student55_user"));
+       loginPage.passwordInput.sendKeys(ConfigurationReader.getProperty("student55_pass"));
+       loginPage.signinBtn.click();
+    }
+    @Then("books should be displayed")
+    public void books_should_be_displayed() {
+
+        String expectedURL ="books";
+        wait.until(ExpectedConditions.urlContains(expectedURL));
+        String actualURL = Driver.getDriver().getCurrentUrl();
+        Assert.assertTrue("books is not appear on URL",actualURL.contains(expectedURL));
 
     }
 }
