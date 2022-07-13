@@ -1,5 +1,6 @@
 package com.cydeo.library.step_definitions;
 
+import com.cydeo.library.pages.LandingPage;
 import com.cydeo.library.pages.LoginPage;
 import com.cydeo.library.utilities.BrowserUtils;
 import com.cydeo.library.utilities.ConfigurationReader;
@@ -16,6 +17,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class LoginStepDef {
 
     LoginPage loginPage = new LoginPage();
+    LandingPage landingPage = new LandingPage();
     WebDriverWait wait = new WebDriverWait(Driver.getDriver(),10);
 
     @Given("I am on the login page")
@@ -57,7 +59,8 @@ public class LoginStepDef {
     }
 
     @When("I enter username {string}")
-    public void i_enter_username(String username) {
+    public void i_enter_username(String username)
+    {
          loginPage.emailInput.sendKeys(username);
     }
     @When("I enter password {string}")
@@ -69,8 +72,11 @@ public class LoginStepDef {
         loginPage.signinBtn.click();
     }
     @When("there should be {string} users")
-    public void there_should_be_users(String string) {
+    public void there_should_be_users(String expectedUserCount) {
 
+      BrowserUtils.waitForVisibility(landingPage.userCount,10);
+      String actualUserCount = landingPage.userCount.getText();
+      Assert.assertEquals("User count is failing!",expectedUserCount,actualUserCount);
 
     }
 }
