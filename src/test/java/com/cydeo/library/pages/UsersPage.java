@@ -10,8 +10,8 @@ import java.util.List;
 // page_url = https://library2.cydeo.com/#users
 public class UsersPage {
 
-    @FindBy(xpath = "//thead")
-    public WebElement usersTableHeader;
+    @FindBy(tagName = "th")
+    public List<WebElement> usersTableHeader;
 
     // No page elements added
 
