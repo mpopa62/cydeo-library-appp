@@ -91,4 +91,19 @@ public class LoginStepDef {
         String actualUserCount = landingPage.userCount.getText();
         Assert.assertEquals("User count is failing!",expectectedUserNum,actualUserCount);
     }
+
+    @When("I login using {string} and {string}")
+    public void i_login_using_and(String username, String password) {
+        loginPage.emailInput.sendKeys(username);
+        loginPage.passwordInput.sendKeys(password);
+        loginPage.signinBtn.click();
+    }
+    @Then("account holder name should be {string}")
+    public void account_holder_name_should_be(String expectedUserName) {
+
+        BrowserUtils.waitForVisibility(landingPage.dashboardLink,5);
+        String actualUserName = landingPage.userNameLink.getText();
+        Assert.assertEquals(expectedUserName,actualUserName);
+
+    }
 }
