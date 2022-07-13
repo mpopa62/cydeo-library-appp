@@ -24,7 +24,7 @@ public abstract class BasePage {
     @FindBy(xpath="//span[.='Books']")
     public WebElement booksLink;
 
-    @FindBy(id="navbarDropdown")
+    @FindBy(xpath = "//a[@id='navbarDropdown']/span")
     public WebElement userNameLink;
 
 
