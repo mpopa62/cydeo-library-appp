@@ -5,6 +5,7 @@ import com.cydeo.library.pages.LoginPage;
 import com.cydeo.library.utilities.BrowserUtils;
 import com.cydeo.library.utilities.ConfigurationReader;
 import com.cydeo.library.utilities.Driver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -71,12 +72,23 @@ public class LoginStepDef {
     public void click_the_sign_in_button() {
         loginPage.signinBtn.click();
     }
-    @When("there should be {string} users")
-    public void there_should_be_users(String expectedUserCount) {
 
-      BrowserUtils.waitForVisibility(landingPage.userCount,10);
-      String actualUserCount = landingPage.userCount.getText();
-      Assert.assertEquals("User count is failing!",expectedUserCount,actualUserCount);
+//    @When("there should be {string} users")
+//    public void there_should_be_users(String expectedUserCount) {
+//
+//      BrowserUtils.waitForVisibility(landingPage.userCount,10);
+//      String actualUserCount = landingPage.userCount.getText();
+//      Assert.assertEquals("User count is failing!",expectedUserCount,actualUserCount);
+//
+//    }
 
+    @And("there should be {int} users")
+    public void thereShouldBeUsers(int expectedUserCount) {
+        //String expecteduserNum = expectedUserCount+"";
+        String expectectedUserNum = String.valueOf(expectedUserCount);
+
+        BrowserUtils.waitForVisibility(landingPage.userCount,10);
+        String actualUserCount = landingPage.userCount.getText();
+        Assert.assertEquals("User count is failing!",expectectedUserNum,actualUserCount);
     }
 }
