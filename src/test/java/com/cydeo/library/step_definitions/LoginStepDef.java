@@ -19,7 +19,8 @@ public class LoginStepDef {
     WebDriverWait wait = new WebDriverWait(Driver.getDriver(),10);
 
     @Given("I am on the login page")
-    public void i_am_on_the_login_page() {
+    public void i_am_on_the_login_page()
+    {
         Driver.getDriver().get(ConfigurationReader.getProperty("qa2_url"));
     }
     @When("I login as a librarian")
@@ -52,6 +53,24 @@ public class LoginStepDef {
         wait.until(ExpectedConditions.urlContains(expectedURL));
         String actualURL = Driver.getDriver().getCurrentUrl();
         Assert.assertTrue("books is not appear on URL",actualURL.contains(expectedURL));
+
+    }
+
+    @When("I enter username {string}")
+    public void i_enter_username(String username) {
+         loginPage.emailInput.sendKeys(username);
+    }
+    @When("I enter password {string}")
+    public void i_enter_password(String password) {
+        loginPage.passwordInput.sendKeys(password);
+    }
+    @When("click the sign in button")
+    public void click_the_sign_in_button() {
+        loginPage.signinBtn.click();
+    }
+    @When("there should be {string} users")
+    public void there_should_be_users(String string) {
+
 
     }
 }
