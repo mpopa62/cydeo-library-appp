@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 
 // page_url = https://library2.cydeo.com/#users
-public class UsersPage {
+public class UsersPage extends BasePage{
 
     @FindBy(tagName = "th")
     public List<WebElement> usersTableHeader;
