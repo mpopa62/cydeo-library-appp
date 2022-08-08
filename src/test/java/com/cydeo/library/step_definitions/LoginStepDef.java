@@ -28,7 +28,7 @@ public class LoginStepDef {
     }
     @When("I login as a librarian")
     public void i_login_as_a_librarian() {
-       loginPage.emailInput.sendKeys(ConfigurationReader.getProperty("lib22_user"));
+       loginPage.usernameInput.sendKeys(ConfigurationReader.getProperty("lib22_user"));
        loginPage.passwordInput.sendKeys(ConfigurationReader.getProperty("lib22_pass"));
        loginPage.signinBtn.click();
     }
@@ -45,7 +45,7 @@ public class LoginStepDef {
 
     @When("I login as a student")
     public void i_login_as_a_student() {
-       loginPage.emailInput.sendKeys(ConfigurationReader.getProperty("student55_user"));
+       loginPage.usernameInput.sendKeys(ConfigurationReader.getProperty("student55_user"));
        loginPage.passwordInput.sendKeys(ConfigurationReader.getProperty("student55_pass"));
        loginPage.signinBtn.click();
     }
@@ -62,7 +62,7 @@ public class LoginStepDef {
     @When("I enter username {string}")
     public void i_enter_username(String username)
     {
-         loginPage.emailInput.sendKeys(username);
+         loginPage.usernameInput.sendKeys(username);
     }
     @When("I enter password {string}")
     public void i_enter_password(String password) {
@@ -94,7 +94,7 @@ public class LoginStepDef {
 
     @When("I login using {string} and {string}")
     public void i_login_using_and(String username, String password) {
-        loginPage.emailInput.sendKeys(username);
+        loginPage.usernameInput.sendKeys(username);
         loginPage.passwordInput.sendKeys(password);
         loginPage.signinBtn.click();
     }
@@ -106,4 +106,5 @@ public class LoginStepDef {
         Assert.assertEquals(expectedUserName,actualUserName);
 
     }
+
 }
